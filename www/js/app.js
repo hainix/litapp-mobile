@@ -8,8 +8,8 @@
 angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter.services', 'starter.Directives', 'ngOpenFB', 'ngIOS9UIWebViewPatch', 'AngularGM'])
 
 .run(function($ionicPlatform, ngFB) {
-	ngFB.init({appId: '299948876841231'});
-	
+	//ngFB.init({appId: '299948876841231'});
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,7 +21,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
-  
+
   $ionicConfigProvider.backButton.previousTitleText(false).text('');
 
   // Ionic uses AngularUI Router which uses the concept of states
@@ -63,37 +63,11 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         }
       }
     })
-    .state('tab.saved', {
-      url: '/saved',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/tab-saved.html',
-          controller: 'SavedCtrl'
-        }
-      }
-    })
-    .state('tab.saved-place-detail', {
-      url: '/saved/:listId/:entryId',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/entry-detail.html',
-          controller: 'EntryDetailCtrl'
-        }
-      }
-    })
-    .state('tab.saved-list-detail', {
-      url: '/saved/:listId',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/list-detail.html',
-          controller: 'ListDetailCtrl'
-        }
-      }
-    })
 
-  
+
+
   ; // End stateProvider
-  
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/lists');

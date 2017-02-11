@@ -1,11 +1,11 @@
-<ion-view view-title="WhatsNom">
+<ion-view view-title="LitApp">
   <ion-nav-buttons side="secondary">
-    <select 
-      class="button button-clear header-select" 
+    <select
+      class="button button-clear header-select"
       ng-if="supportedCities"
-      ng-model="selectedCity" 
+      ng-model="selectedCity"
       ng-init="setupCitySelector()"
-      ng-options="opt.id as opt.label for opt in supportedCities"     
+      ng-options="opt.id as opt.label for opt in supportedCities"
       ng-change="updateSelectedCity(selectedCity)">
     </select>
   </ion-nav-buttons>
@@ -17,21 +17,21 @@
 	      </div>
 	    </div>
     </div>
-    <ion-refresher 
-      ng-hide="!listsWithHeaders" 
-      pulling-text="Pull to refresh" 
+    <ion-refresher
+      ng-hide="!listsWithHeaders"
+      pulling-text="Pull to refresh"
       on-refresh="pullToRefreshLists()">
     </ion-refresher>
-    <ion-list 
-      ng-hide="!listsWithHeaders" 
+    <ion-list
+      ng-hide="!listsWithHeaders"
       class="lists-detail-container">
-      <div 
+      <div
         collection-repeat="item in listsWithHeaders"
         item-width="100%"
         divider-collection-repeat>
-        <ion-item 
+        <ion-item
           href="#/tab/lists/{{item.id}}">
-          <div 
+          <div
             class="list-detail-row animated-in"
             ng-if="item.cover"
             ng-show="item.cover"
@@ -40,7 +40,7 @@
 		          <h2>{{item.name}}</h2>
 		          <p>
                 <i class="icon ion-ios-location"></i> {{item.spot_count}}
-                <i class="icon ion-android-favorite"></i> {{item.review_count}} 
+                <i class="icon ion-android-favorite"></i> {{item.review_count}}
                 <i class="icon ion-android-list"></i> {{item.snippet}}
               </p>
 	          </div>

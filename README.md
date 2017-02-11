@@ -1,4 +1,4 @@
-# whatsnom-mobile
+# litapp-mobile
 
 Mobile code, built on the ionic platform (which publishes to iOS and Android)
 
@@ -31,7 +31,7 @@ Android Release Code:
 - cordova build --release android
 - jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore resources/key/my-release-key.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk alias_name
 - enter passowrd for jarsigner
-- ~/Library/Android/sdk/build-tools/23.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/WhatsNom.apk
+- ~/Library/Android/sdk/build-tools/23.0.3/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk platforms/android/build/outputs/apk/LitApp.apk
 - upload new version to google play store https://play.google.com/apps/publish/?dev_acc=14410831066730830338#AppListPlace
 - update version number for next release in config.xml
 
@@ -45,4 +45,3 @@ iOS Release Process:
 - wait 15 minutes
 - submit new version to app store from itunes connect
 - update version number for next release in config.xml
-

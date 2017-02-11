@@ -239,7 +239,7 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 		  	msg += ' http://m.yelp.com/biz/'+$scope.place.yelp_id;
 		  }
 
-		  msg += ' (via WhatsNom)';
+		  msg += ' (via LitApp)';
 
 		  $cordovaSocialSharing
 		    .share(msg) // Share via native share sheet
