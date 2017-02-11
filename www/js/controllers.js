@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
+angular.module('starter.controllers', ['starter.services'])
 
 .run(function($rootScope, Lists, $cordovaGeolocation, $ionicPlatform) {
 	//console.log('INIT: .run startup funcs');
@@ -75,7 +75,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 	  Lists.loadListsToRootScope(true);
   };
   $ionicPlatform.ready(function() {
-	  Lists.loadBookmarksToRootScope();
 	  Lists.loadListsToRootScope(true);
   });
 })
@@ -166,40 +165,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 		return false;
 	};
 
-	$scope.saveEntry = function (entryID) {
-		if (window.localStorage.getItem('fbuid') != null && !isNaN(window.localStorage.getItem('fbuid'))) {
-			$http.jsonp(
-			  'http://www.whatsnom.com/api/1.0/edit_bookmark.php?uid=' + window.localStorage.getItem('fbuid')
-			  +'&entry_id=' + entryID + '&force_state=added&format=json&callback=JSON_CALLBACK'
-			).success(function (data) {
-				if (data == 'added') {
-					$ionicLoading.show({ template: 'Saved Bookmark', noBackdrop: true, duration: 500 });
-					$ionicListDelegate.closeOptionButtons();
-				} else {
-					//console.log('unrecognized response from api adder from uid ' + window.localStorage.getItem('fbuid')
-					//+ ' to entry_id '+ entryID + ': '+data);*/
-				}
-				Lists.loadBookmarksToRootScope();
-			}).error(
-        function (data, status, headers, config) {
-	        console.log(status);
-	      }
-      );
-		} else {
-		    var confirmPopup = $ionicPopup.confirm({
-		      title: 'Whoops!',
-		      template: 'To save a spot, log in first.'
-		    });
-		    confirmPopup.then(function(res) {
-		      if(res) {
-		        $state.go('tab.saved');
-		      } else {
-		        // Close dialog
-		      }
-		    });
-		}
-	}
-
 })
 
 .controller('EntryDetailCtrl', function($scope, $stateParams, $http, $q, $ionicHistory, $ionicPopup, $state, Lists, $ionicLoading, $cordovaSocialSharing) {
@@ -218,16 +183,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 		$scope.place = data.place;
 		$scope.listPlaceWasViewedFrom = data.list;
 		$scope.listEntryForPlace = data.entry;
-
-		// TODO: get initial value from 'bookmarks for user' query and set the text correctly here
-		if (window.localStorage.getItem('fbuid') !== null
-		    && !isNaN(window.localStorage.getItem('fbuid')) && $scope.bookmark != null) {
-			//$scope.saveEntryActionText = 'Remove';
-			$scope.saveEntryActionIconClass = 'saved-bookmark-icon';
-		} else {
-			//$scope.saveEntryActionText = 'Save';
-			$scope.saveEntryActionIconClass = 'not-saved-bookmark-icon';
-		}
 
 		$scope.shareEntry = function (target_id) {
 		  var msg = '';
@@ -248,46 +203,6 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 		    }, function(err) {
 				// Share error
 		    });
-		};
-
-		$scope.saveEntry = function (target_id) {
-			if (window.localStorage.getItem('fbuid') === null || isNaN(window.localStorage.getItem('fbuid'))) {
-			    var confirmPopup = $ionicPopup.confirm({
-			      title: 'Whoops!',
-			      template: 'To save a spot, log in first.'
-			    });
-			    confirmPopup.then(function(res) {
-			      if(res) {
-			        $state.go('tab.saved');
-			      } else {
-			        // Close dialog
-			      }
-			    });
-				return false;
-			}
-	        var deferred_inner = $q.defer();
-			$http.jsonp(
-			  'http://www.whatsnom.com/api/1.0/edit_bookmark.php?uid=' + window.localStorage.getItem('fbuid')
-			  +'&entry_id=' + $scope.listEntryForPlace.id + '&format=json&callback=JSON_CALLBACK'
-			).success(function (data) {
-				//console.log('DEBUG: bookmark response: ', data);
-				if (data == 'removed') {
-					$ionicLoading.show({ template: 'Removed Bookmark', noBackdrop: true, duration: 600 });
-					$scope.saveEntryActionIconClass = 'not-saved-bookmark-icon';
-				} else if (data == 'added') {
-					$ionicLoading.show({ template: 'Saved Bookmark', noBackdrop: true, duration: 600 });
-					$scope.saveEntryActionIconClass = 'saved-bookmark-icon';
-
-				} else {
-					//console.log('ERROR: unrecognized response from api adder from uid ' + window.localStorage.getItem('fbuid') + ' to target_id '+ $scope.place.id + ': '+data);
-				}
-				Lists.loadBookmarksToRootScope();
-	            deferred_inner.resolve(data);
-			}).error(function (data, status, headers, config) {
-	            console.log(status);
-	            deferred_inner.reject(status);
-	        });
-	        return deferred_inner.promise;
 		};
 
 	    $scope.displayParams = {};
@@ -322,118 +237,4 @@ angular.module('starter.controllers', ['starter.services', 'ngOpenFB'])
 
 })
 
-.controller('SavedCtrl', function($scope,  $rootScope, ngFB, Lists, $http, $ionicListDelegate, $ionicLoading, $state, $ionicHistory) {
-	Lists.loadBookmarksToRootScope();
-
-	$scope.pullToRefreshBookmarks = function () {
-		Lists.loadBookmarksToRootScope();
-	    $scope.$broadcast('scroll.refreshComplete');
-	    $scope.$apply();
-	}
-
-	$scope.filterTypeIcon = 'ion-navigate';
-	$scope.listOrderField = 'position';
-	$scope.toggleFilter = function () {
-		if ($scope.filterTypeIcon == 'ion-navigate') {
-			$ionicLoading.show({ template: 'Sorted by Distance', noBackdrop: true, duration: 600 });
-			$scope.filterTypeIcon = 'ion-connection-bars';
-			$scope.listOrderField = 'distance_from_me';
-		} else if ($scope.filterTypeIcon == 'ion-connection-bars') {
-			$ionicLoading.show({ template: 'Sorted by Rank', noBackdrop: true, duration: 600 });
-			$scope.filterTypeIcon = 'ion-navigate';
-			$scope.listOrderField = 'position';
-		} else {
-			console.log("ERROR: unrecognized filter type: ", $scope.filterTypeIcon);
-		}
-	}
-
-	// To open external URL using inappbrowser
-	$scope.openExternalURL = function(ext_url) {
-	    window.open(ext_url, "_blank", "location=yes");
-		return false;
-	};
-
-	$scope.removeEntry = function (entryID) {
-		if (window.localStorage.getItem('fbuid') != null && !isNaN(window.localStorage.getItem('fbuid'))) {
-			$http.jsonp(
-			  'http://www.whatsnom.com/api/1.0/edit_bookmark.php?uid=' + window.localStorage.getItem('fbuid')
-			  +'&entry_id=' + entryID + '&force_state=removed&format=json&callback=JSON_CALLBACK'
-			).success(function (data) {
-				if (data == 'removed') {
-					$ionicListDelegate.closeOptionButtons();
-					$ionicLoading.show({ template: 'Removed', noBackdrop: true, duration: 500 });
-					Lists.loadBookmarksToRootScope();
-				} else {
-					console.log('Error: Unrecognized response from api adder from uid ' + window.localStorage.getItem('fbuid')
-					+ ' to entry_id '+ entryID + ': '+data);
-				}
-			}).error(function (data, status, headers, config) {
-	            console.log(status);
-	        });
-		} else {
-      //console.log('Error: tried to remove entry without being logged in');
-		}
-	}
-
-  $scope.hideLocationFilter = true;
-  if (window.localStorage.getItem('lat') != null && !isNaN(window.localStorage.getItem('lat'))) {
-    $scope.hideLocationFilter = false;
-	}
-
-	// User has logged in before, and not logged out
-	$scope.logout_posttext = '';
-	$scope.hideFBLoginButton = false;
-	if (window.localStorage.getItem('fbuid') != null && !isNaN(window.localStorage.getItem('fbuid'))) {
-		$scope.hideFBLoginButton = true;
-		if (window.localStorage.getItem('fbname') !== null) {
-			$scope.logout_posttext = ' (' + window.localStorage.getItem('fbname') + ')';
-		}
-	}
-	$scope.fbLogin = function () {
-    ngFB.login({scope: ''}).then(
-	    function (response) {
-	      if (response.status === 'connected') {
-	        //console.log('Facebook login succeeded');
-          $scope.hideFBLoginButton = true;
-			    ngFB.api({
-			      path: '/me',
-			      params: {fields: 'id,first_name'}
-			    }).then(
-			      function (user) {
-						  if (user) {
-							  window.localStorage.setItem('fbuid', user.id);
-							  window.localStorage.setItem('fbname', user.first_name);
-							  $scope.logout_posttext = ' ('+ window.localStorage.getItem('fbname') +')';
-		 					  Lists.loadBookmarksToRootScope();
-							  return false;
-						  }
-			      },
-			      function (error) {
-			        alert('Facebook error: ' + error.error_description);
-			      }
-				 );
-				 return false;
-	     } else {
-	       alert('Facebook login failed');
-	     }
-	   }
-   );
-  };
-
-	$scope.fbLogout = function () {
-	  ngFB.logout().then(
-	    function (response) {
-		    $scope.hideFBLoginButton = false;
-				window.localStorage.removeItem('fbuid');
-				window.localStorage.removeItem('fbname');
-  	    $rootScope.bookmarks = null;
-	  	  $rootScope.bookmarkCount = null;
-        $ionicHistory.nextViewOptions({
-          disableBack: true
-        });
-        $state.go('tab.lists');
-				return false;
-	    });
-	};
-
-});
+;

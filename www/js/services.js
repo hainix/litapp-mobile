@@ -3,34 +3,19 @@ angular.module('starter.services', [])
 .factory('Lists', function($http, $rootScope) {
 
   return {
-  	loadBookmarksToRootScope: function() {
-  		$http.jsonp(
-  		  'http://www.whatsnom.com/api/1.1/get_bookmarks.php?uid=' + window.localStorage.getItem('fbuid') +'&format=json&callback=JSON_CALLBACK'
-  		).success(function (data) {
-        angular.forEach(data.bookmarks, function(value, key) {
-  			  $rootScope.addLocationToList(data.bookmarks[key]);
-  		  });
-  	    $rootScope.bookmarks = data.bookmarks;
-	  	  $rootScope.bookmarkCount = data.count;
-  		  //console.log('DEBUG: Set bookmark to $rootScope:', data);
-  		}).error(function (data, status, headers, config) {
-  	    console.log(status);
-  	  });
-  	},
-	  
-    loadListsToRootScope: function(force) {
+  	loadListsToRootScope: function(force) {
   		// We store lists in local memory (rootScope) for performance
   		// TODO: defer
   		var unix_now = Math.round(+new Date()/1000);
-  		if (!force && $rootScope.lists && window.localStorage.getItem('most_recent_fetch') 
+  		if (!force && $rootScope.lists && window.localStorage.getItem('most_recent_fetch')
   			&& ((window.localStorage.getItem('most_recent_fetch') + 86400) > unix_now)) {
-  			//console.log('DEBUG: skipping refetch of loadBookmarksToRootScope with unix ', unix_now);
+  			//console.log('DEBUG: skipping refetch of loadListsToRootScope with unix ', unix_now);
   			return false;
   		}
 
   		$http.jsonp(
   		  'http://www.whatsnom.com/api/1.1/combined.php?'
-        +'uid='+ window.localStorage.getItem('fbuid') 
+        +'uid='+ window.localStorage.getItem('fbuid')
         +'&city_id=' + window.localStorage.getItem('selectedcity')
         +'&format=json&callback=JSON_CALLBACK'
   		).success(function (data) {
@@ -44,7 +29,7 @@ angular.module('starter.services', [])
   	    console.log(status);
   	  });
     },
-	
+
     loadThisListToRootScope: function(listId) {
   	  //console.log('DEBUG: Running loadThisListToRootScope for listId: ', listId);
 
@@ -79,7 +64,7 @@ angular.module('starter.services', [])
   	  }).error(function (data, status, headers, config) {
   	    console.log(status);
   	    return false;
-  	  });	 
+  	  });
     }
   };
 });
