@@ -59,7 +59,6 @@ angular.module('starter.controllers', ['starter.services'])
 	  $scope.$apply();
 	};
 
-
 	$scope.setupCitySelector = function () {
   	if (window.localStorage.getItem('selectedcity') != null
       && !isNaN(window.localStorage.getItem('selectedcity'))) {
@@ -100,6 +99,7 @@ angular.module('starter.controllers', ['starter.services'])
 	Lists.loadThisListToRootScope($stateParams.listId);
 
   // START Map config
+	/*
   $rootScope.mapCenter = null;
   if (window.localStorage.getItem('lat') != null && !isNaN(window.localStorage.getItem('lat'))) {
     $rootScope.mapCenter = new google.maps.LatLng(window.localStorage.getItem('lat'), window.localStorage.getItem('long'));
@@ -155,7 +155,6 @@ angular.module('starter.controllers', ['starter.services'])
     $scope.prev_selected_entry = entry;
     marker.setOptions({icon: $scope.getPinImage(entry, true)});
   };
-
 	// END Map Config
 
 
@@ -164,6 +163,7 @@ angular.module('starter.controllers', ['starter.services'])
 	  window.open(ext_url, "_blank", "location=yes");
 		return false;
 	};
+	*/
 
 })
 

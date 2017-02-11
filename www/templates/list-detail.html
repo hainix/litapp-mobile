@@ -4,40 +4,6 @@
 	    {{list.name}}
     </span>
   </ion-nav-title>
-  <ion-header-bar
-    class="bar-subheader"
-    style="padding: 0; height: 204px;">
-    <div data-tap-disabled="true" class="animated-in" style="position: relative;">
-      <gm-map
-        gm-map-id="'listMapView'"
-        gm-center="center"
-        gm-zoom="zoom"
-        gm-bounds="bounds"
-        gm-map-options="mapOptions.map"
-        gm-map-type-id="mapTypeId"
-        class="gm-map">
-        <gm-markers
-          gm-objects="list.entries"
-          gm-id="object.id"
-          gm-position="{lat: object.place.latitude, lng: object.place.longitude}"
-          gm-marker-options="{icon: getPinImage(object, false)}"
-          gm-on-click="selectMapEntry(object, marker)">
-        </gm-markers>
-        <gm-markers
-          gm-objects="currentLocation"
-          gm-id="object.id"
-          gm-position="{lat: object.latitude, lng: object.longitude}"
-          gm-marker-options="{icon: object.icon}">
-        </gm-markers>
-      </gm-map>
-      <div
-	      ng-if="list.review_count"
-		    class="item item-divider list-header-subtext"
-		    style="text-align: center">
-		    Based on  <b>{{list.critic_count}} Critics</b> and <b>{{list.review_count}} Reviews</b>
-	    </div>
-    </div>
-  </ion-header-bar>
   <ion-content>
     <div class="center scroll" ng-hide="list">
       <div class="row">
@@ -47,71 +13,28 @@
 	    </div>
     </div>
     <ion-list ng-hide="!list">
-  	  <div
-	      class="lists-detail-container list-with-entries">
         <ion-item
 		      collection-repeat="entry in list.entries"
-          item-height="150px"
+          item-height="73px"
           item-width="100%"
 		      type="item-text-wrap"
-		      ng-attr-href="{{currentStateName == 'tab.saved-list-detail' ?  '#/tab/saved/' + list.id + '/' + entry.id  : '#/tab/lists/' + list.id + '/' + entry.id }}">
-          <div
-            ng-if="entry.list_item_thumbnail"
-            class="list-detail-row animated-in"
-  		      style="background: url({{entry.list_item_thumbnail}}); background-position: center; background-size: cover;">
-  		      <div
-              ng-class="
-                (selectedEntry && (selectedEntry.position == entry.position))
-                ? 'list-entry-position list-entry-position-selected'
-                : 'list-entry-position'"
-              ng-if="entry.position">
-  				    <h2 ng-class="(entry.position > 9) ? 'entry-rank smaller-text' : 'entry-rank'">
-  				      {{entry.position}}
-              </h2>
-            </div>
-            <!-- changes here must also be made in tab-saved.html -->
-  		      <div class="list-detail-row-overlay">
-              <div class="list-button-container">
-                <a
-        	        ng-if="entry.place.opentable_id"
-        		      ng-click="openExternalURL('http://mobile.opentable.com/opentable/?restId={{entry.place.opentable_id}}')">
-                    <button class="button button-small button-clear icon ion-ios-bookmarks"></button>
-                </a>
-                <a
-        	        ng-if="(!entry.place.opentable_id && entry.place.yelp_seat_me)"
-        	        ng-click="openExternalURL('https://www.seatme.yelp.com/r/{{entry.place.yelp_seat_me}}')"
-                  <button class="button button-small button-clear icon ion-ios-bookmarks"></button>
-                </a>
-                <a
-          		    href="tel: {{entry.place.phone}}"
-                  ng-if="entry.place && entry.place.phone">
-                  <button class="button button-small button-clear icon ion-ios-telephone"></button>
-                </a>
-              </div>
-              <h2>{{entry.name}}</h2>
-    			    <p>
-    	          <span
-    				      ng-if="entry.displayed_distance_from_me"
-    				      class="distance-from-me">
-                  <i class="icon ion-ios-navigate"></i>
-    				      {{entry.displayed_distance_from_me}} mi
-    			      </span>
-    			      <span
-                  ng-if="entry.place && entry.place.neighborhoods">
-                  <i class="icon ion-ios-location"></i>
-                  {{entry.place.neighborhoods}}
-                </span>
-    			      <span
-                  ng-if="entry.place && entry.place.categories">
-                  <i class="icon {{entry.icon}}"></i>
-                  {{entry.place.categories}}
-                </span>
-    			    </p>
-  		      </div>
-            <!-- End copypasta section -->
-  		    </div>
-  	    </ion-item>
-      </div>
+		      ng-attr-href="{{'#/tab/lists/' + list.id + '/' + entry.id }}">
+          <h2>{{entry.position}}. {{entry.name}}</h2>
+          <p>
+            <span
+              ng-if="entry.displayed_distance_from_me"
+              class="distance-from-me">
+              <i class="icon ion-ios-navigate"></i>
+              {{entry.displayed_distance_from_me}} mi
+            </span>
+            <span
+              ng-if="entry.place && entry.place.neighborhoods">
+              <i class="icon ion-ios-location"></i>
+              {{entry.place.neighborhoods}}
+            </span>
+          </p>
+           <ion-badge item-right>260k</ion-badge>
+        </ion-item>
     </ion-list>
   </ion-content>
 </ion-view>
