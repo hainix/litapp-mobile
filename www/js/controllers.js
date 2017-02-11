@@ -174,8 +174,7 @@ angular.module('starter.controllers', ['starter.services'])
   var deferred_outer = $q.defer();
 	$scope.currentStateName = $ionicHistory.currentStateName();
 	$http.jsonp(
-	  'http://www.whatsnom.com/api/1.0/view_entry.php?entry_id=' + $stateParams.entryId
-	  +'&uid='+window.localStorage.getItem('fbuid')
+	  'http://www.whatsnom.com/api/litapp/1.0/view_entry.php?entry_id=' + $stateParams.entryId
 	  +'&format=json&callback=JSON_CALLBACK'
 	).success(function (data) {
 		//console.log('DEBUG: Fetched Entry Data: ',data);

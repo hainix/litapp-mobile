@@ -14,7 +14,7 @@ angular.module('starter.services', [])
   		}
 
   		$http.jsonp(
-  		  'http://www.whatsnom.com/api/1.1/combined.php?'
+  		  'http://www.whatsnom.com/api/litapp/1.0/combined.php?'
         +'uid='+ window.localStorage.getItem('fbuid')
         +'&city_id=' + window.localStorage.getItem('selectedcity')
         +'&format=json&callback=JSON_CALLBACK'
@@ -53,18 +53,6 @@ angular.module('starter.services', [])
   	  		console.log('ERROR: $rootScope.lists was set, but unable to find list with id: ', listId, 'rootscope.lists:', $rootScope.lists);
   		  }
   	  }
-  	  // Usually when debugging
-  	  $http.jsonp(
-  	    'http://www.whatsnom.com/api/1.0/view_list.php?list_id=' + listId +'&format=json&callback=JSON_CALLBACK'
-  	  ).success(function (data) {
-  	    console.log('DEBUG: Refetched from API + set list to $rootScope for id: ', listId, 'and data: ',data);
-  	    $rootScope.list = data;
-  	    $rootScope.addLocationToList($rootScope.list);
-  	    return true;
-  	  }).error(function (data, status, headers, config) {
-  	    console.log(status);
-  	    return false;
-  	  });
     }
   };
 });
