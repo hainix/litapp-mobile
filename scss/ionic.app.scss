@@ -21,18 +21,21 @@ $activated-button-color: #f5f5f5;
 $royal: $accent-color !default;
 $positive: $accent-color !default;
 
-$bar-title-font-size:  17px !default;
+$bar-title-font-size:  22px !default;
 $bar-subheader-height: 227px !default;
 $list-row-height:  150px;
 
-$royal:                           #8A0707 !default;
+$royal: #8A0707 !default;
 $accent-color: #8A0707;
 
 // The path for our ionicons font files, relative to the built CSS in www/css
 $ionicons-font-path: "../lib/ionic/fonts" !default;
 
-@import url(http://fonts.googleapis.com/css?family=Oxygen);
-$font-family-base: "Oxygen", sans-serif !default;
+//@import url(http://fonts.googleapis.com/css?family=Oxygen);
+//$font-family-base: "Oxygen", sans-serif !default;
+
+@import url(http://fonts.googleapis.com/css?family=Sansita);
+$font-family-base: "Sansita", sans-serif !default;
 
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
@@ -66,41 +69,6 @@ $font-family-base: "Oxygen", sans-serif !default;
   height: 50px;
   margin-top: 6px;
 }
-
-/* START status bar hacks
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header
-{
-  height: $bar-height !important;
-}
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader)
-{
-  height: $bar-height !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper
-{
-  margin-top: 0px !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > *
-{
-  margin-top: 0px !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top
-{
-  top: $bar-height !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader
-{
-  top: $bar-height !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  top: $bar-height + $bar-subheader-height !important;
-}
-/* END status bar hacks */
 
 .nav-bar-block .title {
    margin: 0;
@@ -163,20 +131,27 @@ $font-family-base: "Oxygen", sans-serif !default;
 	color: #6B6B6B;
 }
 
-/* List Detail - Map View
-.gm-map {
-  width: 100%;
-  height: 190px;
+/* Custom for litapp and font */
+
+.item h2 {
+  font-size: 22px;
 }
 
-.gm-map img {
-  max-width: none;
+.badge {
+  background-color: transparent;
+  color: #AAA;
+  z-index: 1;
+  display: inline-block;
+  padding: 11px 10px;
+  min-width: 40px;
+  border-radius: 13px;
+  vertical-align: baseline;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 16px;
+  min-height: 40px;
 }
-
-.gmnoprint a, .gmnoprint span, .gm-style-cc {
-    display:none;
-}
-*/
 
 /* Lists Homepage */
 .lists-detail-container .row {
@@ -189,11 +164,11 @@ $font-family-base: "Oxygen", sans-serif !default;
 .lists-detail-container h2 {
 	font-weight:300;
 	text-align:left;
-	padding-top: 82px;
-	font-size: 22px;
+	padding-top: 80px;
+	font-size: 30px;
 	color:rgba(255,255,255,1);
 	text-shadow: 2px 1px rgba(0,0,0,0.8);
-  line-height: 29px;
+  line-height: 34px;
 
 }
 

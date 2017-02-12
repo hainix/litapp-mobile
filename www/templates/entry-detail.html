@@ -63,12 +63,14 @@
 				<ion-item
           class="item-left">
           <h2>litness</h2>
-          <span class="badge {{place.litness > 80 ? 'badge-assertive' : (place.litness > 50 ? 'badge-energized' : 'badge-calm')}}">{{place.litness}}</span>
+					<p>{{place.litness > 80 ? 'currently lit af' : (place.litness > 50 ? 'currently aite' : 'currently dead af')}}</p>
+          <span class="badge {{place.litness > 80 ? 'badge-assertive' : (place.litness > 50 ? 'badge-energized' : 'badge-dark')}}">{{place.litness}}</span>
         </ion-item>
 				<ion-item
           class="item-left">
-          <h2>yo but how lit is it?</h2>
-          <span class="badge {{data.litnessvote > 80 ? 'badge-assertive' : (data.litnessvote > 50 ? 'badge-energized' : 'badge-calm')}}">{{data.litnessvote}}</span>
+          <h2>tell peeps</h2>
+					<p>u here? how lit is it atm?</p>
+          <span class="badge {{data.litnessvote > 80 ? 'badge-assertive' : (data.litnessvote > 50 ? 'badge-energized' : 'badge-dark')}}">{{data.litnessvote}}</span>
 					<div class=" range range-positive">
 				    <i class="ion-ios-flame-outline"></i>
 				    <input type="range" name="volume" min="0" max="100" value="{{place.litness}}" ng-model="data.litnessvote" ng-change="updateLitnessVote()">
@@ -87,7 +89,7 @@
             style="padding-left: 14px; background-color: #F5F5F5;"
             ng-click="openExternalURL('http://m.yelp.com/biz/{{place.yelp_id}}')">
             <div>
-              {{place.review_count}} Yelp Reviews
+              {{place.review_count}} yelp reviews tho
             </div>
             <i class="icon">
               <div

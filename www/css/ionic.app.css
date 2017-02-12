@@ -15,7 +15,7 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
-@import url(http://fonts.googleapis.com/css?family=Oxygen);
+@import url(http://fonts.googleapis.com/css?family=Sansita);
 /*!
   Ionicons, v2.0.1
   Created by Ben Sperry for the Ionic Framework, http://ionicons.com/
@@ -3340,7 +3340,7 @@ body,
   word-wrap: break-word;
   font-size: 14px;
   font-family: -apple-system;
-  font-family: "Oxygen", sans-serif;
+  font-family: "Sansita", sans-serif;
   line-height: 20px;
   text-rendering: optimizeLegibility;
   -webkit-backface-visibility: hidden;
@@ -3596,7 +3596,7 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   color: #000;
   font-weight: 500;
-  font-family: "Oxygen", sans-serif;
+  font-family: "Sansita", sans-serif;
   line-height: 1.2; }
   h1 small, h2 small, h3 small, h4 small, h5 small, h6 small,
   .h1 small, .h2 small, .h3 small, .h4 small, .h5 small, .h6 small {
@@ -4012,7 +4012,7 @@ a.subdued {
     text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
-    font-size: 17px;
+    font-size: 22px;
     font-weight: 500;
     line-height: 44px; }
     .bar .title.title-left {
@@ -4037,7 +4037,7 @@ a.subdued {
       font-size: 20px;
       line-height: 32px; }
     .bar .button.button-icon, .bar button.button-icon {
-      font-size: 17px; }
+      font-size: 22px; }
       .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before, .bar button.button-icon .icon:before, .bar button.button-icon:before, .bar button.button-icon.icon-left:before, .bar button.button-icon.icon-right:before {
         vertical-align: top;
         font-size: 32px;
@@ -4046,7 +4046,7 @@ a.subdued {
       padding-right: 2px;
       padding-left: 2px;
       font-weight: 300;
-      font-size: 17px; }
+      font-size: 22px; }
       .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before, .bar button.button-clear .icon:before, .bar button.button-clear.icon:before, .bar button.button-clear.icon-left:before, .bar button.button-clear.icon-right:before {
         font-size: 32px;
         line-height: 32px; }
@@ -4112,7 +4112,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #444;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-light .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4132,7 +4132,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #444;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-stable .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4152,7 +4152,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #fff;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-positive .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4172,7 +4172,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #fff;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-calm .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4192,7 +4192,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #fff;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-assertive .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4212,7 +4212,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #fff;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-balanced .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4232,7 +4232,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #fff;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-energized .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4252,7 +4252,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #fff;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-royal .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -4272,7 +4272,7 @@ a.subdued {
     background: none;
     box-shadow: none;
     color: #fff;
-    font-size: 17px; }
+    font-size: 22px; }
   .bar-dark .button.button-icon {
     border-color: transparent;
     background: none; }
@@ -7551,7 +7551,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Oxygen", sans-serif; }
+  font-family: "Sansita", sans-serif; }
 
 .item-input {
   display: -webkit-box;
@@ -9843,40 +9843,6 @@ a.button {
   height: 50px;
   margin-top: 6px; }
 
-/* START status bar hacks
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header
-{
-  height: $bar-height !important;
-}
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader)
-{
-  height: $bar-height !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader).item-input-inset .item-input-wrapper
-{
-  margin-top: 0px !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) > *
-{
-  margin-top: 0px !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .tabs-top > .tabs, .platform-ios.platform-cordova:not(.fullscreen) .tabs.tabs-top
-{
-  top: $bar-height !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-header, .platform-ios.platform-cordova:not(.fullscreen) .bar-subheader
-{
-  top: $bar-height !important;
-}
-
-.platform-ios.platform-cordova:not(.fullscreen) .has-subheader {
-  top: $bar-height + $bar-subheader-height !important;
-}
-/* END status bar hacks */
 .nav-bar-block .title {
   margin: 0; }
 
@@ -9929,20 +9895,25 @@ a.button {
   font-size: 14px;
   color: #6B6B6B; }
 
-/* List Detail - Map View
-.gm-map {
-  width: 100%;
-  height: 190px;
-}
+/* Custom for litapp and font */
+.item h2 {
+  font-size: 22px; }
 
-.gm-map img {
-  max-width: none;
-}
+.badge {
+  background-color: transparent;
+  color: #AAA;
+  z-index: 1;
+  display: inline-block;
+  padding: 11px 10px;
+  min-width: 40px;
+  border-radius: 13px;
+  vertical-align: baseline;
+  white-space: nowrap;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 16px;
+  min-height: 40px; }
 
-.gmnoprint a, .gmnoprint span, .gm-style-cc {
-    display:none;
-}
-*/
 /* Lists Homepage */
 .lists-detail-container .row {
   padding: 0; }
@@ -9953,11 +9924,11 @@ a.button {
 .lists-detail-container h2 {
   font-weight: 300;
   text-align: left;
-  padding-top: 82px;
-  font-size: 22px;
+  padding-top: 80px;
+  font-size: 30px;
   color: white;
   text-shadow: 2px 1px rgba(0, 0, 0, 0.8);
-  line-height: 29px; }
+  line-height: 34px; }
 
 .lists-detail-container p {
   font-weight: 200;
