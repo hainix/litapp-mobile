@@ -39,7 +39,7 @@
         <!-- Place header -->
         <div class="lists-detail-container">
           <div
-    	      class="list-detail-row animated-in"
+    	      class="list-detail-row"
             style="background-image: url('{{place.profile_pic}}'); background-position: center; background-size: cover;">
     	      <div class="list-detail-row-overlay">
     	        <h2>{{place.name}}</h2>
@@ -58,22 +58,26 @@
           </div>
         </div>
 
-    	<!-- Snippet -->
-    	<div style="margin-top: 20px;" ng-if="listPlaceWasViewedFrom">
-        <a
-    	    class="item item-divider item-icon-right"
-          ng-attr-href="{{currentStateName === 'tab.saved-place-detail' ?  '#/tab/saved/' + listPlaceWasViewedFrom.id : '#/tab/lists/' + listPlaceWasViewedFrom.id }}">
-    	    #{{listEntryForPlace.position}} {{listPlaceWasViewedFrom.entry_name}}
-    	    <span ng-if="listPlaceWasViewedFrom.city_name"> in {{listPlaceWasViewedFrom.city_name}}</span>
-    	    <i class="button-small icon ion-ios-list-outline" style="right: -2px;"></i>
-        </a>
-    	  <div class="item item-text-wrap" ng-if="listEntryForPlace && listEntryForPlace.tip">
-          {{listEntryForPlace.tip}}
-    	  </div>
-    	</div>
-
     	<!-- Lists and Reviews -->
-      <div class="list">
+			<div class="list card">
+				<ion-item
+          class="item-left">
+          <h2>community litness levels</h2>
+          <span class="badge {{place.litness > 80 ? 'badge-assertive' : (place.litness > 50 ? 'badge-energized' : 'badge-calm')}}">{{place.litness}}</span>
+        </ion-item>
+				<ion-item
+          class="item-left">
+          <h2>yo but how lit is it?</h2>
+          <span class="badge {{data.litnessvote > 80 ? 'badge-assertive' : (data.litnessvote > 50 ? 'badge-energized' : 'badge-calm')}}">{{data.litnessvote}}</span>
+					<div class=" range range-positive">
+				    <i class="ion-ios-flame-outline"></i>
+				    <input type="range" name="volume" min="0" max="100" value="{{place.litness}}" ng-model="data.litnessvote" ng-change="updateLitnessVote()">
+				    <i class="ion-ios-flame"></i>
+				  </div>
+				</ion-item>
+			</div>
+
+      <div class="list card">
         <div
           class="place-detail-link"
           ng-if="place.yelp_id">
@@ -93,11 +97,8 @@
             </i>
           </a>
         </div>
-      </div>
-
-    	<!-- Map and Address -->
-    	<div class="list" ng-if="place.latitude">
     	  <a
+					ng-if="place.latitude"
     	    ng-click="openExternalURL('http://maps.apple.com/?q=+{{place.latitude}},{{place.longitude}}')">
     		  <div class="map">
     	      <div class="row">

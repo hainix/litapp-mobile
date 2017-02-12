@@ -66,6 +66,8 @@ angular.module('starter.services', [])
         console.log(status);
         return false;
       });
+
+      return true;
     }
   };
 });

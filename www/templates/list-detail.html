@@ -14,12 +14,13 @@
     </div>
     <ion-list ng-hide="!list">
         <ion-item
-		      collection-repeat="entry in list.entries"
+          class="item-left"
+          collection-repeat="entry in list.entries"
           item-height="73px"
           item-width="100%"
 		      type="item-text-wrap"
 		      ng-attr-href="{{'#/tab/lists/' + list.id + '/' + entry.id }}">
-          <h2>{{entry.position}}. {{entry.name}}</h2>
+          <h2>{{entry.name}}</h2>
           <p>
             <span
               ng-if="entry.displayed_distance_from_me"
@@ -33,7 +34,7 @@
               {{entry.place.neighborhoods}}
             </span>
           </p>
-           <ion-badge item-right>260k</ion-badge>
+          <span class="badge {{entry.place.litness > 80 ? 'badge-assertive' : (entry.place.litness > 50 ? 'badge-energized' : 'badge-calm')}}">{{entry.place.litness}}</span>
         </ion-item>
     </ion-list>
   </ion-content>

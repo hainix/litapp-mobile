@@ -212,6 +212,12 @@ angular.module('starter.controllers', ['starter.services'])
   			return false;
   		};
 
+			// To open external URL using inappbrowser
+  		$scope.updateLitnessVote = function() {
+  		  console.log('changed field');
+  			return false;
+  		};
+
 	    // Snippet
 	    $scope.displayParams.snippet = $scope.listEntryForPlace.snippet;
 
