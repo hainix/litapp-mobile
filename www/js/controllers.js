@@ -167,7 +167,7 @@ angular.module('starter.controllers', ['starter.services'])
 
 })
 
-.controller('EntryDetailCtrl', function($scope, $stateParams, $http, $q, $ionicHistory, $ionicPopup, $state, Lists, $ionicLoading, $cordovaSocialSharing) {
+.controller('EntryDetailCtrl', function($scope, $stateParams, $http, $q, $ionicHistory, $ionicPopup, $state, Lists, $ionicLoading, $cordovaSocialSharing, $cordovaInAppBrowser) {
 	$scope.currentLat = window.localStorage.getItem('lat');
 	$scope.currentLong = window.localStorage.getItem('long');
 

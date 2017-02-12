@@ -62,7 +62,7 @@
 			<div class="list card">
 				<ion-item
           class="item-left">
-          <h2>community litness levels</h2>
+          <h2>our litness (0-100)</h2>
           <span class="badge {{place.litness > 80 ? 'badge-assertive' : (place.litness > 50 ? 'badge-energized' : 'badge-calm')}}">{{place.litness}}</span>
         </ion-item>
 				<ion-item
@@ -105,7 +105,7 @@
     		      <div class="col col-100">
     		        <img
     			      ng-if="currentLong"
-                src="http://maps.googleapis.com/maps/api/staticmap?autoscale=false&size=400x150&maptype=roadmap&format=png&visual_refresh=true&markers=icon:0000%7Cshadow:true%7C{{place.latitude}},{{place.longitude}}&markers=icon:http://www.whatsnom.com/icondir/currentloc.png?1%7Cshadow:true%7C{{currentLat}},{{currentLong}}"
+                src="http://maps.googleapis.com/maps/api/staticmap?autoscale=false&size=400x150&maptype=roadmap&format=png&visual_refresh=true&markers=icon:0000%7Cshadow:true%7C{{place.latitude}},{{place.longitude}}"
     				    style="width:100%" />
     		        <img
     			      ng-if="!currentLong"
