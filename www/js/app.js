@@ -18,8 +18,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
       cordova.plugins.Keyboard.disableScroll(true);
     }
     */
-    window.open = cordova.InAppBrowser.open;
-
+    //window.open = cordova.InAppBrowser.open;
   });
 })
 
@@ -34,6 +33,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
   $stateProvider
 
   // setup an abstract state for the tabs directive
+
   .state('tab', {
     url: '/tab',
     abstract: true,
@@ -66,8 +66,6 @@ angular.module('starter', ['ionic', 'ngCordova', 'starter.controllers', 'starter
         }
       }
     })
-
-
 
   ; // End stateProvider
 
